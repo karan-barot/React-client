@@ -10,23 +10,18 @@ export default function Navigation(props) {
     const a = props.a
     useEffect(()=>{
         if(window.innerWidth>768){
-            setSideMenu(true)
             setSideMenu(false)
         }
         else{
-            setSideMenu(false)
-            setShowMenu(true)
+           setSideMenu(true)
         }
        
         window.addEventListener("resize",()=>{
             if(window.innerWidth>768){
-                setSideMenu(true)
-                setShowMenu(false)
+                setSideMenu(false)
             }
             else{
-                setSideMenu(false)
-                setShowMenu(true)
-
+               setSideMenu(true)
             }
         })
     },[])
@@ -38,9 +33,9 @@ export default function Navigation(props) {
         
     }
     return(
-        <nav>
+        <nav className="active">
             <NavLink to='/' className="n-brand">Shoppy</NavLink>               
-            <div className={`nav-menu ${sideMenu? 'd-flex':'d-none'}`}>
+            <div className={`nav-menu ${sideMenu? '':'d-flex'}`}>
 
                 <ul className="nav-links">
                     <li><NavLink to='/'>Home</NavLink></li>
@@ -53,14 +48,14 @@ export default function Navigation(props) {
             
                 {
                     a===null?
-                    <ul>
-                        <li><NavLink to='/signup'>Sign Up</NavLink></li>
-                        <li><NavLink to='/signin'>Sign In</NavLink></li>
+                    <ul className="ifNotLoggedIn ">
+                        <li><NavLink to='/signup'>Signup</NavLink></li>
+                        <li><NavLink to='/signin'>Signin</NavLink></li>
                     </ul> 
                     :
                     <ul className="ifLoggedIn" onMouseOver={()=>openDropDown()} onMouseOut={()=>openDropDown()}>
                         <li className={`profile-dropdown-btn `} onMouseOver={()=>openDropDown()} onMouseOut={()=>openDropDown()}><i className="fas fa-user-circle"></i></li>
-                        <div className={`profile-dropdown-menu ${showMenu ? 'd-flex':'d-none'}`}>   
+                        <div className={`profile-dropdown-menu ${showMenu ? 'd-flex':''}`}>   
                             <p>{localStorage.getItem("userName")}</p>   
                             <NavLink to='/orders'>Orders</NavLink>      
                             <NavLink to='/wishlist'>Wishlist</NavLink>               
@@ -71,7 +66,7 @@ export default function Navigation(props) {
                 }
             </div>
             
-            <button onClick={()=>setSideMenu(!sideMenu)} className={`btn ${sideMenu?'active':''}`}><i class="fas fa-th-large"></i></button>
+            <button onClick={()=>setSideMenu(!sideMenu)} className={`btn ${sideMenu?'':'active'}`}><i class="fas fa-th-large"></i></button>
             
         </nav>
     )

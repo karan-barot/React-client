@@ -119,10 +119,13 @@ nav{
             height:100%;
             column-gap:.5rem
         }
-        .ifLoggedIn{
+        .ifLoggedIn,.ifNotLoggedIn{
             display:flex;
             align-items: center;
             height:100%;
+        }
+        .ifNotLoggedIn{
+            column-gap:.5rem
         }
     }
     .n-brand{
@@ -678,8 +681,13 @@ nav{
                 border:none
             }
         }
+        
         .nav-menu{
+
+           
+
             position:fixed;
+            background-color: red;
             top:55px;
             right:0;
             margin:0;
@@ -705,12 +713,14 @@ nav{
             .nav-links{
                 flex-direction: column;
                 align-items: flex-start;
-
+            }
+            .ifNotLoggedIn{
+                flex-direction: column-reverse;
             }
             .ifLoggedIn{
                 height:auto;
                 border-top: 1px solid gainsboro;
-                flex-direction: column-reverse;
+                flex-direction: column;
                 .profile-dropdown-btn{
                     display:none;
                 }
@@ -723,7 +733,7 @@ nav{
                     border-radius: 0;
                     margin:0;
                     padding:0;
-                    
+                
                     p{
                         border:none;
                         border-top:1px solid gainsboro;
@@ -735,7 +745,11 @@ nav{
                     }
                 }
             }
+        
+            
         }
+    
+    
     }
 
     .contact{
